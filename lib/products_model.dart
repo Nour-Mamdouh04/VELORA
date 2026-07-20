@@ -17,9 +17,7 @@ class ProductResponse {
 
   factory ProductResponse.fromJson(Map<String, dynamic> json) {
     return ProductResponse(
-      items: (json['items'] as List)
-          .map((e) => Product.fromJson(e))
-          .toList(),
+      items: (json['items'] as List).map((e) => Product.fromJson(e)).toList(),
       page: json['page'],
       pageSize: json['pageSize'],
       totalCount: json['totalCount'],
@@ -81,24 +79,24 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id: json['id'],
-      productCode: json['productCode'],
-      name: json['name'],
-      description: json['description'],
-      arabicName: json['arabicName'],
-      arabicDescription: json['arabicDescription'],
-      coverPictureUrl: json['coverPictureUrl'],
+      id: json['id'] ?? "",
+      productCode: json['productCode'] ?? "",
+      name: json['name'] ?? "",
+      description: json['description'] ?? "",
+      arabicName: json['arabicName'] ?? "",
+      arabicDescription: json['arabicDescription'] ?? "",
+      coverPictureUrl: json['coverPictureUrl'] ?? "",
       productPictures: json['productPictures'] == null
           ? null
           : List<String>.from(json['productPictures']),
-      price: json['price'],
-      stock: json['stock'],
-      weight: json['weight'],
-      color: json['color'],
+      price: json['price'] ?? "",
+      stock: json['stock'] ?? "",
+      weight: json['weight'] ?? "",
+      color: json['color'] ?? "",
       rating: (json['rating'] as num).toDouble(),
-      reviewsCount: json['reviewsCount'],
-      discountPercentage: json['discountPercentage'],
-      sellerId: json['sellerId'],
+      reviewsCount: json['reviewsCount'] ?? "",
+      discountPercentage: json['discountPercentage'] ?? "",
+      sellerId: json['sellerId'] ?? "",
       categories: List<String>.from(json['categories']),
     );
   }

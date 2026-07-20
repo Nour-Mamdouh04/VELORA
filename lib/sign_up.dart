@@ -28,7 +28,16 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            context.pop();
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -94,7 +103,7 @@ class _SignUpState extends State<SignUp> {
                       TextFormField(
                         controller: passwordController,
                         validator: (pass) {
-                          if (pass!.length < 8 || pass.isEmpty) {
+                          if (pass == null || pass.isEmpty || pass.length < 8) {
                             return "Please enter valid password";
                           }
                           return null;
@@ -126,9 +135,10 @@ class _SignUpState extends State<SignUp> {
                       ),
                       SizedBox(height: 20),
                       TextFormField(
-                        controller: confirmPassword,
                         validator: (confirm) {
-                          if (confirm!.length < 8 || confirm.isEmpty) {
+                          if (confirm == null ||
+                              confirm.isEmpty ||
+                              confirm.length < 8) {
                             return "Please enter valid password";
                           }
                           if (confirm != passwordController.text) {

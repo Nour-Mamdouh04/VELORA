@@ -41,11 +41,10 @@ class AppRouter {
             },
           ),
           GoRoute(
-            path: "/productDetailsScreen",
             name: Routes.productDetailsScreen,
+            path: "/productDetailsScreen",
             builder: (context, state) {
-              final id = state.uri.queryParameters["id"];
-              return ProductDetailsScreen(id: id ?? "");
+              return ProductDetailsScreen(id: state.uri.queryParameters["id"]!);
             },
           ),
         ],

@@ -28,7 +28,23 @@ class _QueryResultState extends State<QueryResult> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Products"), centerTitle: true),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            context.pop();
+          },
+        ),
+        title: const Text(
+          "Our Products",
+          style: TextStyle(
+            fontFamily: "DMSans",
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 121, 113, 72),
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           return switch (state) {
@@ -49,6 +65,7 @@ class _QueryResultState extends State<QueryResult> {
               separatorBuilder: (context, index) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
                 return Card(
+                  color: const Color.fromARGB(149, 216, 188, 133),
                   elevation: 3,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -57,10 +74,12 @@ class _QueryResultState extends State<QueryResult> {
                     padding: const EdgeInsets.all(12),
                     child: GestureDetector(
                       onTap: () {
-                        log(response.items[index].id);
+                        // log(response.items[index].id);
                         context.pushNamed(
                           Routes.productDetailsScreen,
-                          queryParameters: {"id": response.items[index].id},
+                          queryParameters: {
+                            "id": response.items[index].id.toString(),
+                          },
                         );
                       },
                       child: Row(

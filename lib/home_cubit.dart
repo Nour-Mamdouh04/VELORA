@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:velora/api_services.dart';
 import 'package:velora/home_state.dart';
-import 'package:velora/products_model.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit({required this.apiServices}) : super(InitialState());
@@ -9,9 +8,9 @@ class HomeCubit extends Cubit<HomeState> {
   final ApiServices apiServices;
 
   Future<void> getProducts() async {
-    emit(InitialState());
+    emit(ProductsLoadingState());
     try {
-      final response = await apiServices.produsts();
+      final response = await apiServices.products();
       emit(ProductsSuccessState(response: response));
     } catch (e) {
       emit(ProductsFailureState(message: e.toString()));
@@ -20,10 +19,12 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> getProductById({required String id}) async {
     switch (state) {
-      case GetProductByIdSuccessState(:final response):
+      case ProductsSuccessState(:final response):
         emit(GetProductByIdLoadingState(response: response));
+
         try {
           final product = await apiServices.getProductById(id: id);
+
           emit(
             GetProductByIdSuccessState(product: product, response: response),
           );
@@ -35,6 +36,7 @@ class HomeCubit extends Cubit<HomeState> {
             ),
           );
         }
+
       default:
         break;
     }
