@@ -5,7 +5,8 @@ import 'package:velora/api_services.dart';
 import 'package:velora/home_cubit.dart';
 import 'package:velora/home_state.dart';
 import 'routes.dart';
-import 'dart:developer';
+import 'package:velora/app_theme_cubit.dart';
+import 'package:velora/app_theme_state.dart';
 
 class QueryResult extends StatefulWidget {
   const QueryResult({super.key, this.email});
@@ -29,6 +30,18 @@ class _QueryResultState extends State<QueryResult> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          BlocBuilder<AppThemeCubit, AppThemeState>(
+            builder: (context, state) {
+              return IconButton(
+                icon: Icon(state.isDark ? Icons.light_mode : Icons.dark_mode),
+                onPressed: () {
+                  context.read<AppThemeCubit>().toggleTheme();
+                },
+              );
+            },
+          ),
+        ],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {

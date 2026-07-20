@@ -3,6 +3,9 @@ import 'custom_app_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import "routes.dart";
 import 'package:go_router/go_router.dart';
+import 'package:velora/app_theme_cubit.dart';
+import 'package:velora/app_theme_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -29,6 +32,18 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          BlocBuilder<AppThemeCubit, AppThemeState>(
+            builder: (context, state) {
+              return IconButton(
+                icon: Icon(state.isDark ? Icons.light_mode : Icons.dark_mode),
+                onPressed: () {
+                  context.read<AppThemeCubit>().toggleTheme();
+                },
+              );
+            },
+          ),
+        ],
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
