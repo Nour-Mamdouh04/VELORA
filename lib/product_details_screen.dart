@@ -73,6 +73,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         child: Image.network(
                           product.coverPictureUrl,
                           fit: BoxFit.contain,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) {
+                              return child;
+                            }
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
                         ),
                       ),
                     ),
