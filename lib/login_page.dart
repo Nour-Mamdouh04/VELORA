@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:velora/api_services.dart';
 import 'package:velora/app_theme_cubit.dart';
 import 'package:velora/app_theme_state.dart';
 import 'custom_app_button.dart';
@@ -29,11 +30,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // int _counter = 0;
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
+  final ApiServices apiservice = ApiServices();
 
   @override
   void dispose() {
@@ -41,12 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
     passwordController.dispose();
     super.dispose();
   }
-
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -340,13 +334,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white, width: 1),
                     ),
-                    child: IconButton(
-                      onPressed: () {
-                        context.read<AppThemeCubit>().toggleTheme();
+                    child: BlocBuilder<AppThemeCubit, AppThemeState>(
+                      builder: (context, state) {
+                        return IconButton(
+                          onPressed: () {
+                            context.read<AppThemeCubit>().toggleTheme();
+                          },
+                          icon: Icon(
+                            state.isDark ? Icons.light_mode : Icons.dark_mode,
+                          ),
+                        );
                       },
-                      icon: Icon(
-                        state.isDark ? Icons.light_mode : Icons.dark_mode,
-                      ),
                     ),
                   ),
                   Padding(
