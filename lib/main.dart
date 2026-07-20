@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:velora/app_theme_cubit.dart';
-import 'package:velora/app_theme_state.dart';
-import 'app_router.dart';
+import 'package:velora/core/utils/app_theme_cubit.dart';
+import 'package:velora/core/utils/app_theme_state.dart';
+import 'app/rounting/app_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,9 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => AppThemeCubit()),
-      ],
+      providers: [BlocProvider(create: (_) => AppThemeCubit())],
       child: BlocBuilder<AppThemeCubit, AppThemeState>(
         builder: (context, state) {
           return MaterialApp.router(
