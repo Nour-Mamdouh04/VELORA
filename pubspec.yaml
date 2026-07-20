@@ -37,8 +37,8 @@ flutter:
 
   
   assets:
-    - assets/images/
-    - assets/svg/
+    - lib/core/utils/assets/images/
+    - lib/core/utils/assets/svg/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
@@ -53,7 +53,7 @@ flutter:
   fonts:
     - family: DMSans
       fonts:
-        - asset: assets/fonts/DM_Sans/static/DMSans_18pt-Light.ttf
+        - asset: lib/core/utils/assets/fonts/DM_Sans/static/DMSans_18pt-Light.ttf
           weight: 300
         # - asset: fonts/Schyler-Italic.ttf
           # style: italic

@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Stack(
                     children: [
                       Image.asset(
-                        "assets/images/img_2.jfif",
+                        "lib/core/utils/assets/images/img_2.jfif",
                         width: double.infinity,
                         height: 350,
                         fit: BoxFit.cover,
@@ -267,7 +267,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: IconButton(
                           onPressed: () {},
                           icon: SvgPicture.asset(
-                            "assets/svg/icons8-google.svg",
+                            "lib/core/utils/assets/svg/icons8-google.svg",
                             width: 20,
                             height: 20,
                           ),
@@ -292,7 +292,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: IconButton(
                           onPressed: () {},
                           icon: SvgPicture.asset(
-                            "assets/svg/icons8-apple.svg",
+                            "lib/core/utils/assets/svg/icons8-apple.svg",
                             width: 20,
                             height: 20,
                           ),
@@ -317,7 +317,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: IconButton(
                           onPressed: () {},
                           icon: SvgPicture.asset(
-                            "assets/svg/icons8-facebook.svg",
+                            "lib/core/utils/assets/svg/icons8-facebook.svg",
                             width: 20,
                             height: 20,
                           ),
