@@ -85,8 +85,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         width: double.infinity,
                         height: 300,
                         fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          }
+
+                          return SizedBox(
+                            width: double.infinity,
+                            height: 300,
+                            child: const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        },
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
+                            width: double.infinity,
                             height: 300,
                             color: Colors.grey.shade300,
                             child: const Icon(Icons.broken_image, size: 50),
