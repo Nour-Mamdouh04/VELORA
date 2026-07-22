@@ -1,42 +1,43 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:velora/infrastructure/api/api_services.dart';
+import 'package:velora/app/contract/products_use_case.dart';
 import 'package:velora/presentation/cubit/home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit({required this.apiServices}) : super(InitialState());
+  final ProductsUseCase productsUseCase;
 
-  final ApiServices apiServices;
+  
+  HomeCubit({required this.productsUseCase}) : super(InitialState());
 
+  
   Future<void> getProducts() async {
-    emit(ProductsLoadingState());
-    try {
-      final response = await apiServices.products();
-      emit(ProductsSuccessState(response: response));
-    } catch (e) {
-      emit(ProductsFailureState(message: e.toString()));
-    }
+    emit(ProductsLoadingState()); 
+    
+    final result = await productsUseCase.call();
+    
+    
+    result.fold(
+      (failure) => emit(ProductsFailureState(message: failure.msg)),
+      (response) => emit(ProductsSuccessState(response: response)),
+    );
   }
 
+  
   Future<void> getProductById({required String id}) async {
     switch (state) {
+      
       case ProductsSuccessState(:final response):
         emit(GetProductByIdLoadingState(response: response));
-
-        try {
-          final product = await apiServices.getProductById(id: id);
-
-          emit(
+        
+        final result = await productsUseCase.getProductById(id);
+        
+        result.fold(
+          (failure) => emit(
+            GetProductByIdFailureState(message: failure.msg, response: response),
+          ),
+          (product) => emit(
             GetProductByIdSuccessState(product: product, response: response),
-          );
-        } catch (e) {
-          emit(
-            GetProductByIdFailureState(
-              message: e.toString(),
-              response: response,
-            ),
-          );
-        }
-
+          ),
+        );
       default:
         break;
     }

@@ -7,6 +7,8 @@ import 'package:velora/presentation/screens/query_result.dart';
 import 'package:velora/app/rounting/routes.dart';
 import '../../presentation/screens/sign_up.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:velora/injection_container.dart';
+import 'package:velora/presentation/screen/verification_page.dart';
 
 class AppRouter {
   static final appRouter = GoRouter(
@@ -24,10 +26,21 @@ class AppRouter {
         builder: (context, state) => const SignUp(),
       ),
 
+      GoRoute(
+        path: "/verify",
+        name: Routes.verify,
+        builder: (context, state) {
+          
+          final email = state.uri.queryParameters["email"];
+          return VerificationPage(email: email ?? ""); 
+        },
+      ),
+
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider(
-            create: (context) => HomeCubit(apiServices: ApiServices()),
+            
+            create: (context) => getIt<HomeCubit>()..getProducts(), 
             child: child,
           );
         },

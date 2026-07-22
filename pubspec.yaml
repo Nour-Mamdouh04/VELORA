@@ -21,6 +21,9 @@ dependencies:
   flutter_bloc: ^9.1.1
   dio: ^5.10.0
   bloc: ^9.2.1
+  fpdart: ^1.2.0
+  get_it: ^9.2.1
+  pinput: ^6.0.2
 
 dev_dependencies:
   flutter_test:
