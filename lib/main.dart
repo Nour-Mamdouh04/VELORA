@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:velora/core/utils/app_theme_cubit.dart';
 import 'package:velora/core/utils/app_theme_state.dart';
+import 'package:velora/injection_container.dart';
 import 'app/rounting/app_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await initDependencies();
+
   runApp(const MyApp());
 }
 

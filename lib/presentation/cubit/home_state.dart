@@ -1,8 +1,6 @@
 import 'package:velora/domain/models/products_model.dart';
 
-abstract class HomeState {
-
-}
+abstract class HomeState {}
 
 class InitialState extends HomeState{}
 
@@ -10,25 +8,32 @@ class ProductsLoadingState extends HomeState{}
 
 class ProductsSuccessState extends HomeState{
   final ProductResponse response;
+
   ProductsSuccessState({required this.response});
 }
 
 class ProductsFailureState extends HomeState{
   final String message;
+
   ProductsFailureState({required this.message});
 }
 
-class GetProductByIdSuccessState extends ProductsSuccessState{
+
+
+class GetProductByIdSuccessState extends HomeState {
   final Product product;
-  
-  GetProductByIdSuccessState({required this.product, required super.response});
-}
-class GetProductByIdLoadingState extends ProductsSuccessState{
-  GetProductByIdLoadingState({required super.response});
+
+  GetProductByIdSuccessState({
+    required this.product,
+  });
 }
 
-class GetProductByIdFailureState extends ProductsSuccessState{
+class GetProductByIdLoadingState extends HomeState {}
+
+class GetProductByIdFailureState extends HomeState {
   final String message;
 
-  GetProductByIdFailureState({required this.message, required super.response});
+  GetProductByIdFailureState({
+    required this.message,
+  });
 }

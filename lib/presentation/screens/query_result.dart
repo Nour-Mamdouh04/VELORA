@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:velora/infrastructure/api/api_services.dart';
+import 'package:velora/core/network/api/api_services.dart';
 import 'package:velora/presentation/cubit/home_cubit.dart';
 import 'package:velora/presentation/cubit/home_state.dart';
 import '../../app/rounting/routes.dart';
@@ -42,13 +42,7 @@ class _QueryResultState extends State<QueryResult> {
             },
           ),
         ],
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            context.pop();
-          },
-        ),
-        title: const Text(
+        title: Text(
           "Our Products",
           style: TextStyle(
             fontFamily: "DMSans",
@@ -64,14 +58,12 @@ class _QueryResultState extends State<QueryResult> {
             ProductsLoadingState() => const Center(
               child: CircularProgressIndicator(),
             ),
-
-            ProductsFailureState() => const Center(
+            ProductsFailureState(:final message) => Center(
               child: Text(
-                "Failed to load products",
+                message,
                 style: TextStyle(color: Colors.red, fontSize: 18),
               ),
             ),
-
             ProductsSuccessState(:final response) => ListView.separated(
               padding: const EdgeInsets.all(16),
               itemCount: response.items.length,
@@ -139,9 +131,7 @@ class _QueryResultState extends State<QueryResult> {
                               },
                             ),
                           ),
-
-                          const SizedBox(width: 12),
-
+                          SizedBox(width: 12),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,20 +143,16 @@ class _QueryResultState extends State<QueryResult> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-
-                                const SizedBox(height: 8),
-
+                                SizedBox(height: 8),
                                 Text(
                                   response.items[index].description,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-
-                                const SizedBox(height: 8),
-
+                                SizedBox(height: 8),
                                 Text(
                                   "${response.items[index].price} EGP",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     color: Color.fromARGB(255, 83, 88, 83),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
@@ -182,7 +168,6 @@ class _QueryResultState extends State<QueryResult> {
                 );
               },
             ),
-
             _ => const SizedBox.shrink(),
           };
         },

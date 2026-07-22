@@ -89,7 +89,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           if (loadingProgress == null) {
                             return child;
                           }
-
                           return SizedBox(
                             width: double.infinity,
                             height: 300,
@@ -109,14 +108,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       ),
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 15),
-
                         Text(
                           product.name,
                           style: const TextStyle(
@@ -127,7 +124,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                         ),
                         const SizedBox(height: 10),
-
                         Text(
                           "${product.price} EGP",
                           style: const TextStyle(
@@ -138,7 +134,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                         ),
                         const SizedBox(height: 15),
-
                         Row(
                           children: [
                             Container(
@@ -194,7 +189,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 25),
-
                         const Text(
                           "Description",
                           style: TextStyle(
@@ -205,20 +199,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                         ),
                         const SizedBox(height: 8),
-
                         Text(
                           product.description,
                           style: TextStyle(
                             fontSize: 14,
                             fontFamily: "DMSans",
-
                             color: Theme.of(context).textTheme.bodyMedium?.color
                                 ?.withValues(alpha: 0.8),
                             height: 1.5,
                           ),
                         ),
                         const SizedBox(height: 25),
-
                         const Text(
                           "Specifications",
                           style: TextStyle(
@@ -229,7 +220,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                         ),
                         const SizedBox(height: 12),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -253,7 +243,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       "Weight",
                                       style: TextStyle(
                                         fontSize: 11,
-
                                         color: Theme.of(context).hintColor,
                                       ),
                                     ),
@@ -270,7 +259,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 ),
                               ),
                             ),
-
                             Expanded(
                               child: Container(
                                 margin: const EdgeInsets.symmetric(
@@ -309,7 +297,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 ),
                               ),
                             ),
-
                             Expanded(
                               child: Container(
                                 margin: const EdgeInsets.only(left: 6),
@@ -349,7 +336,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 40),
-
                         Center(
                           child: CustomAppButton(
                             title: "Add to Bag",
