@@ -21,7 +21,6 @@ class AuthUseCase {
     );
   }
 
- 
   Future<Either<Failure, Map<String, dynamic>>> verifyEmail({
     required String email,
     required String otp,
@@ -32,7 +31,6 @@ class AuthUseCase {
     );
   }
 
- 
   Future<Either<Failure, Map<String, dynamic>>> login({
     required String email,
     required String password,

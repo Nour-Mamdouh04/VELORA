@@ -7,7 +7,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit({required this.authUseCase}) : super(AuthInitial());
 
- 
+  
   Future<void> signUp({
     required String email,
     required String password,
@@ -23,14 +23,14 @@ class AuthCubit extends Cubit<AuthState> {
     );
     result.fold(
       (failure) => emit(AuthFailure(message: failure.msg)),
-      (data) => emit(SignUpSuccess(email: email)), 
+      (data) => emit(SignUpSuccess(email: email)),
     );
   }
 
  
   Future<void> verifyEmail({
     required String email,
-    required String otp, required code,
+    required String otp,
   }) async {
     emit(AuthLoading());
     final result = await authUseCase.verifyEmail(email: email, otp: otp);
@@ -40,7 +40,7 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
- 
+
   Future<void> login({
     required String email,
     required String password,
@@ -50,7 +50,6 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold(
       (failure) => emit(AuthFailure(message: failure.msg)),
       (data) {
-        
         final token = data['token'] ?? data['accessToken'] ?? "";
         emit(LoginSuccess(token: token));
       },

@@ -222,48 +222,22 @@ class _MyHomePageState extends State<MyHomePage> {
                               ],
                             ),
                           ),
-                          // child: CustomAppButton(
-                          //   title: 'Login',
-                          //   fontWeight: FontWeight.bold,
-                          //   backgroundColor: const Color.fromARGB(
-                          //     224,
-                          //     56,
-                          //     56,
-                          //     53,
-                          //   ),
-                          //   textColor: Colors.white,
-                          //   onPress: () {
-                          //     if (_formkey.currentState!.validate()) {
-                          //       context.read<AuthCubit>().login(
-                          //         email: emailController.text,
-                          //         password: passwordController.text,
-                          //       );
-                          //     }
-                          //   },
-                          // ),
-                          child: CustomAppButton(
-                            title: 'Login',
-                            fontWeight: FontWeight.bold,
-                            backgroundColor: const Color.fromARGB(
-                              224,
-                              56,
-                              56,
-                              53,
+                    
+                       child: CustomAppButton(
+                              title: 'Login',
+                              fontWeight: FontWeight.bold,
+                              backgroundColor: const Color.fromARGB(224, 56, 56, 53),
+                              textColor: Colors.white,
+                              onPress: () {
+                                if (_formkey.currentState!.validate()) {
+                                 
+                                  context.read<AuthCubit>().login(
+                                        email: emailController.text,
+                                        password: passwordController.text,
+                                      );
+                                }
+                              },
                             ),
-                            textColor: Colors.white,
-                            onPress: () {
-                              if (_formkey.currentState!.validate()) {
-                                context.pushNamed(
-                                  Routes.query,
-                                  queryParameters: {
-                                    "email": emailController.text,
-                                  },
-                                );
-                                print(emailController.text);
-                                print(passwordController.text);
-                              }
-                            },
-                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(20.0),

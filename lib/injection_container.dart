@@ -16,6 +16,7 @@ import 'package:velora/presentation/cubit/home_cubit.dart';
 import 'package:velora/domain/repos/auth_repo.dart';
 import 'package:velora/presentation/cubit/auth_cubit.dart';
 import 'package:velora/core/network/api/endpoints.dart';
+import 'package:velora/presentation/cubit/cart_cubit.dart'; 
 
 final getIt = GetIt.instance;
 
@@ -83,5 +84,8 @@ abstract class InjectionHelper {
     getIt.registerFactory<AuthCubit>(
       () => AuthCubit(authUseCase: getIt<AuthUseCase>()),
     );
+
+    
+    getIt.registerLazySingleton<CartCubit>(() => CartCubit());
   }
 }

@@ -283,29 +283,20 @@ class _SignUpState extends State<SignUp> {
                                 ],
                               ),
                             ),
-                            child: CustomAppButton(
+                         child: CustomAppButton(
                               title: 'Sign Up',
                               fontWeight: FontWeight.bold,
-                              backgroundColor: const Color.fromARGB(
-                                224,
-                                56,
-                                56,
-                                53,
-                              ),
+                              backgroundColor: const Color.fromARGB(224, 56, 56, 53),
                               textColor: Colors.white,
                               onPress: () {
                                 if (_formKey.currentState!.validate()) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text("Sending OTP ..."),
-                                    ),
-                                  );
-                                  context.pushNamed(
-                                    Routes.verify,
-                                    queryParameters: {
-                                      "email": emailController.text,
-                                    },
-                                  );
+                                 
+                                  context.read<AuthCubit>().signUp(
+                                        email: emailController.text,
+                                        password: passwordController.text,
+                                        firstName: firstNameController.text,
+                                        lastName: lastNameController.text,
+                                      );
                                 }
                               },
                             ),

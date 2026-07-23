@@ -132,32 +132,20 @@ class _VerificationPageState extends State<VerificationPage> {
                                   ],
                                 ),
                               ),
-                              child: CustomAppButton(
+                           child: CustomAppButton(
                                 title: 'Verify',
                                 fontWeight: FontWeight.bold,
-                                backgroundColor: const Color.fromARGB(
-                                  224,
-                                  56,
-                                  56,
-                                  53,
-                                ),
+                                backgroundColor: const Color.fromARGB(224, 56, 56, 53),
                                 textColor: Colors.white,
                                 onPress: () {
                                   if (_formKey.currentState!.validate()) {
+                                   
                                     context.read<AuthCubit>().verifyEmail(
-                                      email: widget.email,
-                                      otp: pinController.text,
-                                      code: "",
-                                    );
+                                          email: widget.email,
+                                          otp: pinController.text,
+                                        );
                                   }
                                 },
-                                // onPress: () {
-                                //   context.read<AuthCubit>().verifyEmail(
-                                //     email: widget.email,
-                                //     code: pinController.text,
-                                //     otp: '',
-                                //   );
-                                // },
                               ),
                             ),
                     ],

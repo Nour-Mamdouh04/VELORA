@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:velora/core/utils/app_theme_cubit.dart';
 import 'package:velora/core/utils/app_theme_state.dart';
 import 'package:velora/core/widgets/custom_app_button.dart';
+import 'package:velora/presentation/cubit/cart_cubit.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({super.key, required this.id});
@@ -348,6 +349,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                             textColor: Colors.white,
                             onPress: () {
+                                   
+                                    context.read<CartCubit>().addToCart(product);
+
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(

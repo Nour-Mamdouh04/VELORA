@@ -4,6 +4,7 @@ import 'package:velora/core/utils/app_theme_state.dart';
 import 'package:velora/injection_container.dart';
 import 'app/rounting/app_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:velora/presentation/cubit/cart_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => AppThemeCubit())],
+      providers: [
+        
+          BlocProvider(create: (_) => getIt<CartCubit>()),
+        
+        BlocProvider(create: (_) => AppThemeCubit())],
       child: BlocBuilder<AppThemeCubit, AppThemeState>(
         builder: (context, state) {
           return MaterialApp.router(
