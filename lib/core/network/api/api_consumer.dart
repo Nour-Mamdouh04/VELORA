@@ -12,7 +12,6 @@ abstract class ApiConsumer {
     required Object body,
     String? contentType,
     Map<String, dynamic>? headers,
-    Map<String, dynamic>? queryParameters,
   });
   Future<Either<ServerFailure, Map<String, dynamic>>> put({
     required String path,
