@@ -18,6 +18,11 @@ class HomePage extends StatelessWidget {
           );
         },
         currentIndex: navigationShell.currentIndex,
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? Colors.black
+            : Colors.white,
+        selectedItemColor: Color.fromARGB(255, 74, 74, 74),
+        unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
